@@ -60,16 +60,8 @@ EndFunc
 
 
 Func GetPrice($OpenProcess, $Address)
-  ; game code reads the value then adds the "shift right" version of it to calculate the price
-  ; 004599BC   A1 E0F16900      MOV EAX,DWORD PTR DS:[69F1E0]
-  ; 004599C1   8BD0             MOV EDX,EAX
-  ; ...
-  ; 004599C5   D1FA             SAR EDX,1
-  ; 004599C7   03D0             ADD EDX,EAX
-
-  $price1 = Int(_MemRead($OpenProcess, $Address, 2))
-  $price2 = BitShift($price1, 1)
-  Return $price1 + $price2
+  $price = Int(_MemRead($OpenProcess, $Address, 2))
+  Return $price * 1.5
 EndFunc
 
 
